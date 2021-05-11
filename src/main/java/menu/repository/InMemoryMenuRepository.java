@@ -1,5 +1,6 @@
 package menu.repository;
 
+import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
 import menu.models.*;
 
@@ -43,9 +44,17 @@ public class InMemoryMenuRepository implements MenuRepository {
     }
 
     @Override
-    public List<MainCourse> getMainCoursesByCuisinesType(CuisinesType type) {
+    public List<MainCourse> getMainCoursesByCuisinesTypeId(int cuisinesId) throws CuisinesNotFoundException {
+        Optional<CuisinesType> typeOptional = Arrays.stream(CuisinesType.values())
+                .filter(cuisinesType -> cuisinesType.index == cuisinesId)
+                .findFirst();
+
+        if (typeOptional.isEmpty()) {
+            throw new CuisinesNotFoundException("Cuisines with id: " + cuisinesId + " not found.");
+        }
+
         return this.availableMainCourses.stream()
-                .filter(mainCourse -> mainCourse.getCuisinesType() == type)
+                .filter(mainCourse -> mainCourse.getCuisinesType() == typeOptional.get())
                 .collect(Collectors.toList());
     }
 

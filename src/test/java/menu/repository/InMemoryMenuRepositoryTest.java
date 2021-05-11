@@ -1,5 +1,6 @@
 package menu.repository;
 
+import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
 import menu.models.CuisinesType;
 import menu.models.MenuItem;
@@ -29,13 +30,20 @@ class InMemoryMenuRepositoryTest {
     }
 
     @Test
-    void shouldFilterMainCoursesByCuisinesType() {
+    void shouldFilterMainCoursesByCuisinesType() throws CuisinesNotFoundException {
         /**
          * Should be minimum 1 of each cuisines type main course.
          */
-        assertThat(this.repository.getMainCoursesByCuisinesType(CuisinesType.ITALIAN).size(), greaterThanOrEqualTo(1));
-        assertThat(this.repository.getMainCoursesByCuisinesType(CuisinesType.POLISH).size(), greaterThanOrEqualTo(1));
-        assertThat(this.repository.getMainCoursesByCuisinesType(CuisinesType.MEXICAN).size(), greaterThanOrEqualTo(1));
+        assertThat(this.repository.getMainCoursesByCuisinesTypeId(1).size(), greaterThanOrEqualTo(1));
+        assertThat(this.repository.getMainCoursesByCuisinesTypeId(2).size(), greaterThanOrEqualTo(1));
+        assertThat(this.repository.getMainCoursesByCuisinesTypeId(3).size(), greaterThanOrEqualTo(1));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPassedWrongCuisinesIndex() {
+        assertThrows(CuisinesNotFoundException.class, () -> {
+            this.repository.getMainCoursesByCuisinesTypeId(999);
+        });
     }
 
     @Test

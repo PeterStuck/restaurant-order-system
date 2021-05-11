@@ -1,5 +1,6 @@
 package menu.repository;
 
+import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
 import menu.models.*;
 
@@ -9,7 +10,7 @@ public interface MenuRepository {
 
     List<MainCourse> getAllMainCourse();
 
-    List<MainCourse> getMainCoursesByCuisinesType(CuisinesType type);
+    List<MainCourse> getMainCoursesByCuisinesTypeId(int cuisinesId) throws CuisinesNotFoundException;
 
     MenuItem findMainCoursePriceById(int id) throws MenuItemNotFoundException;
 
