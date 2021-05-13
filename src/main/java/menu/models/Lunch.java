@@ -1,6 +1,6 @@
 package menu.models;
 
-public class Lunch {
+public class Lunch implements Orderable {
 
     private MainCourse mainCourse;
     private Dessert dessert;
@@ -24,5 +24,15 @@ public class Lunch {
 
     public Dessert getDessert() {
         return dessert;
+    }
+
+    @Override
+    public Float getPrice() {
+        return this.mainCourse.getPrice() + this.dessert.getPrice();
+    }
+
+    @Override
+    public Orderable getItem() {
+        return this;
     }
 }

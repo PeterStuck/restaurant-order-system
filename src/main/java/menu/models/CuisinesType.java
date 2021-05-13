@@ -8,7 +8,7 @@ public enum CuisinesType {
 
     public final int index;
 
-    private CuisinesType(int index) {
+    CuisinesType(int index) {
         this.index = index;
     }
 

@@ -32,10 +32,11 @@ public class InMemoryMenuRepository implements MenuRepository {
     );
 
     private final List<Drink> availableDrinks = Arrays.asList(
-            new Drink(1,"Coca-Cola", 2.99F, "", false),
-            new Drink(2,"Fanta", 2.99F, "", false),
-            new Drink(3,"Mojito", 2.99F, "", true),
-            new Drink(4,"Old Fashioned", 2.99F, "", true)
+            new Drink(1,"Coca-Cola", 2.99F, "", false, false),
+            new Drink(2,"Fanta", 2.99F, "", false, false),
+            new Drink(3,"Orange Juice", 3.99F, "", false, false),
+            new Drink(4,"Diet Coke", 1.99F, "", false, false),
+            new Drink(5,"Water", 0.99F, "", false, false)
     );
 
     @Override
@@ -76,31 +77,24 @@ public class InMemoryMenuRepository implements MenuRepository {
     }
 
     @Override
-    public List<Drink> getDrinksWithAlcohol() {
-        return this.availableDrinks.stream()
-                .filter(Drink::isWithAlcohol)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public MenuItem findMainCoursePriceById(int id) throws MenuItemNotFoundException {
+    public MenuItem findMainCourseById(int id) throws MenuItemNotFoundException {
         List<? extends MenuItem> availableMainCourses = this.availableMainCourses;
 
         return findItemOrThrowException((List<MenuItem>) availableMainCourses, id);
     }
 
     @Override
-    public MenuItem findDessertPriceById(int id) throws MenuItemNotFoundException {
+    public MenuItem findDessertById(int id) throws MenuItemNotFoundException {
         List<? extends MenuItem> availableDesserts = this.availableDesserts;
 
         return findItemOrThrowException((List<MenuItem>) availableDesserts, id);
     }
 
     @Override
-    public MenuItem findDrinkPriceById(int id) throws MenuItemNotFoundException {
-        List<? extends MenuItem> availableDesserts = this.availableDesserts;
+    public MenuItem findDrinkById(int id) throws MenuItemNotFoundException {
+        List<? extends MenuItem> availableDrinks = this.availableDrinks;
 
-        return findItemOrThrowException((List<MenuItem>) availableDesserts, id);
+        return findItemOrThrowException((List<MenuItem>) availableDrinks, id);
     }
 
     private MenuItem findItemOrThrowException(List<MenuItem> collection, int searchedId) throws MenuItemNotFoundException {

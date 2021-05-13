@@ -1,4 +1,7 @@
-package order;
+package order.utils;
+
+import order.models.Order;
+import order.models.OrderItem;
 
 import java.rmi.NoSuchObjectException;
 import java.util.List;
@@ -10,11 +13,11 @@ public class OrderTotalCalculator {
             throw new NoSuchObjectException("Order cannot be nullable!");
         }
 
-        List<OrderItem> orderItems = order.getOrder();
+        List<OrderItem> orderItems = order.getOrderList();
         float orderTotal = 0.0F;
 
         for (OrderItem item : orderItems) {
-            orderTotal += item.getItemPrice() * item.getQuantity();
+            orderTotal += item.getItem().getPrice() * item.getQuantity();
         }
 
         return orderTotal;

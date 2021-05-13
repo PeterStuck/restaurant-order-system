@@ -1,0 +1,64 @@
+package order.console;
+
+import java.util.Scanner;
+
+/**
+ * Allows to get from user certain options about order.
+ */
+public class ConsoleUserInteractor {
+
+    private Scanner scanner;
+
+    ConsoleUserInteractor() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    String askForLunch() {
+        System.out.println("Would you like to order lunch? [Y]es/[N]o");
+        return scanner.nextLine().toLowerCase();
+    }
+
+    int askForCuisinesType() {
+        System.out.println("What type of cuisines you like? (0- SHOW ALL, 1- POLISH, 2- MEXICAN, 3- ITALIAN)");
+        return scanner.nextInt();
+    }
+
+    int askForMainCourseIndex() {
+        System.out.println("Please select main course you want and type it's number: ");
+        return scanner.nextInt();
+    }
+
+    String askForDessertType() {
+        System.out.println("What type of desserts you like? ([S]HOW ALL, [F]IT)");
+        scanner.nextLine();
+        return scanner.nextLine().toLowerCase();
+    }
+
+    int askForDessertIndex() {
+        System.out.println("Please select dessert you want and type it's number: ");
+        return scanner.nextInt();
+    }
+
+    String askForDrink() {
+        System.out.println("Would you like to order a drink? [Y]es/[N]o");
+        scanner.nextLine();
+        return scanner.nextLine().toLowerCase();
+    }
+
+    int askForDrinkIndex() {
+        System.out.println("Please select drink you want and type it's number: ");
+        return scanner.nextInt();
+    }
+
+    String askForAdditionalIceCubesForDrink() {
+        System.out.println("Add ice cubes for drink? [Y]es/[N]o");
+        return scanner.nextLine();
+    }
+
+
+    public String askForAdditionalLemonForDrink() {
+        System.out.println("Add lemon to drink? [Y]es/[N]o");
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+}

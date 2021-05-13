@@ -2,7 +2,6 @@ package menu.repository;
 
 import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
-import menu.models.CuisinesType;
 import menu.models.MenuItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,18 +57,13 @@ class InMemoryMenuRepositoryTest {
 
     @Test
     void shouldReturnStoredDrinks() {
-        assertThat(this.repository.getAllDrinks(), hasSize(4));
-    }
-
-    @Test
-    void shouldRetrieveOnlyDrinksWithAlcohol() {
-        assertThat(this.repository.getDrinksWithAlcohol(), hasSize(2));
+        assertThat(this.repository.getAllDrinks(), hasSize(5));
     }
 
     @Test
     void whenMainCourseWithIdIsPresentShouldReturnObject() throws MenuItemNotFoundException {
         int searchedId = 1;
-        MenuItem mainCourse = this.repository.findMainCoursePriceById(searchedId);
+        MenuItem mainCourse = this.repository.findMainCourseById(searchedId);
 
         assertThat(mainCourse, notNullValue());
         assertThat(mainCourse.getId(), equalTo(searchedId));
@@ -78,14 +72,14 @@ class InMemoryMenuRepositoryTest {
     @Test
     void whenMainCourseWithPassedIdNotExistsThenThrowException() {
         assertThrows(MenuItemNotFoundException.class, () -> {
-            this.repository.findMainCoursePriceById(999);
+            this.repository.findMainCourseById(999);
         });
     }
 
     @Test
     void whenDessertWithIdIsPresentShouldReturnObject() throws MenuItemNotFoundException {
         int searchedId = 1;
-        MenuItem dessert = this.repository.findDessertPriceById(searchedId);
+        MenuItem dessert = this.repository.findDessertById(searchedId);
 
         assertThat(dessert, notNullValue());
         assertThat(dessert.getId(), equalTo(searchedId));
@@ -94,14 +88,14 @@ class InMemoryMenuRepositoryTest {
     @Test
     void whenDessertWithPassedIdNotExistsThenThrowException() {
         assertThrows(MenuItemNotFoundException.class, () -> {
-            this.repository.findDessertPriceById(999);
+            this.repository.findDessertById(999);
         });
     }
 
     @Test
     void whenDrinkWithIdIsPresentShouldReturnObject() throws MenuItemNotFoundException {
         int searchedId = 1;
-        MenuItem drink = this.repository.findDrinkPriceById(searchedId);
+        MenuItem drink = this.repository.findDrinkById(searchedId);
 
         assertThat(drink, notNullValue());
         assertThat(drink.getId(), equalTo(searchedId));
@@ -110,7 +104,7 @@ class InMemoryMenuRepositoryTest {
     @Test
     void whenDrinkWithPassedIdNotExistsThenThrowException() {
         assertThrows(MenuItemNotFoundException.class, () -> {
-            this.repository.findDrinkPriceById(999);
+            this.repository.findDrinkById(999);
         });
     }
 

@@ -1,8 +1,6 @@
 package menu.printer;
 
 import exceptions.CuisinesNotFoundException;
-import menu.models.Dessert;
-import menu.models.MainCourse;
 import menu.models.MenuItem;
 import menu.repository.InMemoryMenuRepository;
 import menu.repository.MenuRepository;
@@ -11,7 +9,8 @@ import java.util.List;
 
 
 /**
- * Print format: [ID] |\t[NAME] |\t[PRICE]
+ * Print format: [ID] |\t[NAME] |\t[SHORT_DESCRIPTION] |\t[PRICE]
+ * Short description only shows up if menu item has it.
  */
 public class SimpleMenuPrinter implements MenuPrinter {
 
@@ -26,7 +25,11 @@ public class SimpleMenuPrinter implements MenuPrinter {
     }
 
     public void printMainCoursesWithCuisinesId(int cuisinesId) throws CuisinesNotFoundException {
-        printItemsInMenu(this.repository.getMainCoursesByCuisinesTypeId(cuisinesId));
+        if (cuisinesId == 0) {
+            this.printAllMainCourses();
+        } else {
+            printItemsInMenu(this.repository.getMainCoursesByCuisinesTypeId(cuisinesId));
+        }
     }
 
     public void printAllDeserts() {
@@ -41,14 +44,14 @@ public class SimpleMenuPrinter implements MenuPrinter {
         printItemsInMenu(this.repository.getAllDrinks());
     }
 
-    public void printOnlyDrinksWithAlcohol() {
-        printItemsInMenu(this.repository.getDrinksWithAlcohol());
-    }
-
     private void printItemsInMenu(List<?> collection) {
         List<? extends MenuItem> converted = (List<MenuItem>) collection;
-        for (MenuItem mainCourse : converted) {
-            System.out.println(mainCourse.getId() + " |\t" + mainCourse.getName() + " |\t" + mainCourse.getPrice());
+        for (MenuItem menuItem : converted) {
+            System.out.println(
+                    menuItem.getId() + " |\t" +
+                    menuItem.getName() + " |\t" +
+                    (!menuItem.getShortDescription().equals("") ? menuItem.getShortDescription() + " |\t" : "") +
+                    menuItem.getPrice());
         }
     }
 

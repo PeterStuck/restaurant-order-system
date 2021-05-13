@@ -17,6 +17,4 @@ public interface MenuPrinter {
 
     void printAllDrinks();
 
-    void printOnlyDrinksWithAlcohol();
-
 }

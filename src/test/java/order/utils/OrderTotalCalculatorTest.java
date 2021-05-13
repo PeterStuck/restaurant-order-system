@@ -1,6 +1,9 @@
-package order;
+package order.utils;
 
 import menu.models.Drink;
+import order.models.Order;
+import order.models.OrderItem;
+import order.utils.OrderTotalCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,9 +24,10 @@ class OrderTotalCalculatorTest {
 
     @Test
     void shouldReturnValidOrderTotalValue() throws NoSuchObjectException {
-        order.addItemToOrder(new OrderItem(new Drink(1,"TEST", 1.0F, "TEST", true), 1));
-        order.addItemToOrder(new OrderItem(new Drink(2,"TEST2", 2.0F, "TEST", false), 1));
-        order.addItemToOrder(new OrderItem(new Drink(3,"TEST3", 3.0F, "TEST", true), 2));
+        order.addItemToOrder(new Drink(1,"TEST", 1.0F, "TEST", false, false));
+        order.addItemToOrder(new Drink(2,"TEST2", 2.0F, "TEST", false, false));
+        order.addItemToOrder(new Drink(3,"TEST3", 3.0F, "TEST", false, false));
+        order.addItemToOrder(new Drink(3,"TEST3", 3.0F, "TEST", false, false));
 
         assertThat(OrderTotalCalculator.computeOrderTotalPrice(order), equalTo(9.0F));
     }

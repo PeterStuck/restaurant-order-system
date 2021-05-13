@@ -1,0 +1,7 @@
+order\ConsoleMessageManagerTest.class
+order\OrderTest.class
+order\printer\SimpleOrderSummaryPrinterTest.class
+order\OrderTotalCalculatorTest.class
+order\OrderRecieverTest.class
+menu\repository\InMemoryMenuRepositoryTest.class
+menu\printer\SimpleMenuPrinterTest.class
