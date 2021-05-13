@@ -11,10 +11,23 @@ public class ConsoleUserInteractor {
 
     ConsoleUserInteractor() {
         this.scanner = new Scanner(System.in);
+        this.printUILogo();
+    }
+
+    private void printUILogo() {
+        System.out.println(" ________\n" +
+                "   -------+  \\\n" +
+                "   \\\\\\\\\\\\\\\\\\  \\\n" +
+                "   //_//__\\\\\\  |\n" +
+                "   /\\0' `0~ |\\ /\n" +
+                "   (|^<, ^  .)|\n" +
+                "    ( ._.  ||/\n" +
+                "     \\ .  / |\n" +
+                "      +--/  | ");
     }
 
     String askForLunch() {
-        System.out.println("Would you like to order lunch? [Y]es/[N]o");
+        System.out.println("Hello, would you like to order lunch? [Y]es/[N]o");
         return scanner.nextLine().toLowerCase();
     }
 
