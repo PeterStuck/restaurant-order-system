@@ -33,34 +33,32 @@ public class ConsoleUserInteractor {
 
     int askForCuisinesType() {
         System.out.println("What type of cuisines you like? (0- SHOW ALL, 1- POLISH, 2- MEXICAN, 3- ITALIAN)");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     int askForMainCourseIndex() {
         System.out.println("Please select main course you want and type it's number: ");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     String askForDessertType() {
         System.out.println("What type of desserts you like? ([S]HOW ALL, [F]IT)");
-        scanner.nextLine();
         return scanner.nextLine().toLowerCase();
     }
 
     int askForDessertIndex() {
         System.out.println("Please select dessert you want and type it's number: ");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     String askForDrink() {
         System.out.println("Would you like to order a drink? [Y]es/[N]o");
-        scanner.nextLine();
         return scanner.nextLine().toLowerCase();
     }
 
     int askForDrinkIndex() {
         System.out.println("Please select drink you want and type it's number: ");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     String askForAdditionalIceCubesForDrink() {
@@ -71,7 +69,6 @@ public class ConsoleUserInteractor {
 
     public String askForAdditionalLemonForDrink() {
         System.out.println("Add lemon to drink? [Y]es/[N]o");
-        scanner.nextLine();
         return scanner.nextLine();
     }
 }
