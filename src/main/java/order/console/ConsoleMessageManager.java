@@ -25,22 +25,34 @@ public class ConsoleMessageManager {
         return optionSelected(lunchSelected);
     }
 
-    public int askForMainCourseAndGetSelectedId() throws CuisinesNotFoundException {
-        int cuisinesId = this.userInteractor.askForCuisinesType();
-        this.menuPrinter.printMainCoursesWithCuisinesId(cuisinesId);
-
-        return this.userInteractor.askForMainCourseIndex();
+    public int askForMainCourseAndGetSelectedId() {
+        try {
+            int cuisinesId = this.userInteractor.askForCuisinesType();
+            this.menuPrinter.printMainCoursesWithCuisinesId(cuisinesId);
+            return this.userInteractor.askForMainCourseIndex();
+        } catch (CuisinesNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Only numbers are accepted here.");
+        }
+        return this.askForMainCourseAndGetSelectedId();
     }
 
     public int askForDessertAndGetSelectedId() {
-        String dessertType = this.userInteractor.askForDessertType();
-        if (dessertType.equals("s") || dessertType.equals("show all")) {
-            this.menuPrinter.printAllDeserts();
-        } else {
-            this.menuPrinter.printOnlyFitDesserts();
+        try {
+            String dessertType = this.userInteractor.askForDessertType();
+            if (dessertType.equals("s") || dessertType.equals("show all")) {
+                this.menuPrinter.printAllDeserts();
+            } else if (dessertType.equals("f") || dessertType.equals("fit")) {
+                this.menuPrinter.printOnlyFitDesserts();
+            } else {
+                throw new IllegalArgumentException("Can't find dessert type: " + dessertType);
+            }
+            return this.userInteractor.askForDessertIndex();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.askForDessertAndGetSelectedId();
         }
-
-        return this.userInteractor.askForDessertIndex();
     }
 
     public boolean isDrinkSelected() {
