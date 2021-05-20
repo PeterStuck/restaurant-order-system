@@ -2,8 +2,8 @@ package menu.printer;
 
 import exceptions.CuisinesNotFoundException;
 import menu.models.MenuItem;
-import menu.repository.InMemoryMenuRepository;
-import menu.repository.MenuRepository;
+import menu.repository.menu.InMemoryMenuRepository;
+import menu.repository.menu.MenuRepository;
 
 import java.util.List;
 

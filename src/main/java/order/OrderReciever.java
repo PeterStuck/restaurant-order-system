@@ -6,8 +6,8 @@ import menu.models.Dessert;
 import menu.models.Drink;
 import menu.models.Lunch;
 import menu.models.MainCourse;
-import menu.repository.InMemoryMenuRepository;
-import menu.repository.MenuRepository;
+import menu.repository.menu.InMemoryMenuRepository;
+import menu.repository.menu.MenuRepository;
 import order.console.ConsoleMessageManager;
 import order.models.Order;
 

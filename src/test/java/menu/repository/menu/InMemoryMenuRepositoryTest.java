@@ -1,8 +1,10 @@
-package menu.repository;
+package menu.repository.menu;
 
 import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
 import menu.models.MenuItem;
+import menu.repository.menu.InMemoryMenuRepository;
+import menu.repository.menu.MenuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

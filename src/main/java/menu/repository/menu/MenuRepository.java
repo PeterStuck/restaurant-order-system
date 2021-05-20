@@ -1,4 +1,4 @@
-package menu.repository;
+package menu.repository.menu;
 
 import exceptions.CuisinesNotFoundException;
 import exceptions.MenuItemNotFoundException;
@@ -11,19 +11,19 @@ import java.util.List;
  */
 public interface MenuRepository {
 
-    List<MainCourse> getAllMainCourse();
+    List<MenuItem> getAllMainCourse();
 
-    List<MainCourse> getMainCoursesByCuisinesTypeId(int cuisinesId) throws CuisinesNotFoundException;
+    List<MenuItem> getMainCoursesByCuisinesTypeId(int cuisinesId) throws CuisinesNotFoundException;
 
     MenuItem findMainCourseById(int id) throws MenuItemNotFoundException;
 
-    List<Dessert> getAllDeserts();
+    List<MenuItem> getAllDeserts();
 
-    List<Dessert> getFitDesserts();
+    List<MenuItem> getFitDesserts();
 
     MenuItem findDessertById(int id) throws MenuItemNotFoundException;
 
-    List<Drink> getAllDrinks();
+    List<MenuItem> getAllDrinks();
 
     MenuItem findDrinkById(int id) throws MenuItemNotFoundException;
 
